@@ -1,0 +1,14 @@
+name: PolarisPlugin
+version: '${project.version}'
+main: dev.infernity.polarisplugin.polarisplugin.PolarisPlugin
+api-version: 1.19
+prefix: Polaris Plugin
+authors: [ Infernity ]
+description: Plugin for Polaris.
+commands:
+  die:
+    description: Commit self-die.
+    aliases:
+      - suicide
+  getHead:
+    description: Get head from base64.
