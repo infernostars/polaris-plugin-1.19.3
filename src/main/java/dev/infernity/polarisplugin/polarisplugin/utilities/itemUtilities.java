@@ -7,6 +7,7 @@ import org.bukkit.Material;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import com.destroystokyo.paper.profile.ProfileProperty;
@@ -35,7 +36,7 @@ public class itemUtilities {
         PlayerProfile playerProfile = skullMeta.getPlayerProfile();
         playerProfile.setProperty(new ProfileProperty("textures", base64));
         skullMeta.setPlayerProfile(playerProfile);
-        skull.setItemMeta((ItemMeta) skullMeta);
+        skull.setItemMeta(skullMeta);
         return skull;
     }
 
@@ -59,6 +60,7 @@ public class itemUtilities {
         return data.has(key);
     }
 
+    @SuppressWarnings("deprecation") // components are no
     public static ItemStack renameItem(ItemStack item, String name){
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(name);
@@ -66,6 +68,7 @@ public class itemUtilities {
         return item;
     }
 
+    @SuppressWarnings("deprecation") // no i am not learning Components, paper
     public static ItemStack createPotionHead(String base64, PotionEffectType potionEffect, String duration, String amplifier, String hunger, String saturation) {
         ItemStack item = itemUtilities.createHeadBase64(base64);
         item = itemUtilities.storeDataInItem(item, PolarisPlugin.createNamespacedKey("potionhead_flag"), "1");
@@ -87,6 +90,8 @@ public class itemUtilities {
         item.setItemMeta(itemMeta);
         return item;
     }
+
+    @SuppressWarnings("deprecation") // no i am not learning Components, paper
     public static ItemStack createFoodHead(String base64, String hunger, String saturation) {
         ItemStack item = itemUtilities.createHeadBase64(base64);
         item = itemUtilities.storeDataInItem(item, PolarisPlugin.createNamespacedKey("foodhead_flag"), "1");
@@ -97,5 +102,25 @@ public class itemUtilities {
         itemMeta.setLore(List.of(lore));
         item.setItemMeta(itemMeta);
         return item;
+    }
+
+    public static ItemStack potionHeadItem(String name, String base64, PotionEffectType effect, String duration, String amplifier, String hunger, String saturation){
+        ItemStack item = itemUtilities.createPotionHead(base64, effect, duration, amplifier, hunger, saturation);
+        item = itemUtilities.renameItem(item, name);
+        return item;
+    }
+    public static ItemStack foodHeadItem(String name, String base64, String hunger, String saturation){
+        ItemStack item = itemUtilities.createFoodHead(base64, hunger, saturation);
+        item = itemUtilities.renameItem(item, name);
+        return item;
+    }
+
+    public static ShapelessRecipe shapelessRecipeCreator(ItemStack item, String keyString, ItemStack[] recipeItems){
+        NamespacedKey key = PolarisPlugin.createNamespacedKey(keyString);
+        ShapelessRecipe recipe = new ShapelessRecipe(key, item);
+        for(ItemStack itemStack : recipeItems){
+            recipe.addIngredient(itemStack);
+        }
+        return recipe;
     }
 }
