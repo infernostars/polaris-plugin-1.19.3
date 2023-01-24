@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"dev.infernity.polarisplugin.polarisplugin"},{"l":"dev.infernity.polarisplugin.polarisplugin.commands"},{"l":"dev.infernity.polarisplugin.polarisplugin.listeners"},{"l":"dev.infernity.polarisplugin.polarisplugin.tasks"},{"l":"dev.infernity.polarisplugin.polarisplugin.utilities"}];updateSearchResults();
