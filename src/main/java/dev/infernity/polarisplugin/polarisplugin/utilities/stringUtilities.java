@@ -1,6 +1,12 @@
 package dev.infernity.polarisplugin.polarisplugin.utilities;
 
 public class stringUtilities {
+    /**
+     * Turns a string into a string cased like natural language.
+     * @param s The string to be cased.
+     * @return A string which is cased, ex. "Hello! How are you doing today?"
+     * @since 0.1
+     */
     public static String toDisplayCase(String s) {
 
         final String ACTIONABLE_DELIMITERS = " '-/"; // these cause the character following
