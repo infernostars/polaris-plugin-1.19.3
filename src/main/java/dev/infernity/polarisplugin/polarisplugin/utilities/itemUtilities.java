@@ -21,10 +21,11 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.List;
 import java.util.UUID;
 
-import static java.lang.Float.parseFloat;
-import static java.lang.Integer.parseInt;
-import static java.lang.Math.round;
 
+
+/**
+ * Utilities relating to ItemStacks.
+ */
 public class itemUtilities {
     /**
      * Create a player head with a base64 texture
@@ -157,13 +158,13 @@ public class itemUtilities {
      * @since 0.1
      */
     @SuppressWarnings("deprecation") // no I am not learning Components, paper
-    public static ItemStack createFoodHead(String name, String base64, String hunger, String saturation) {
+    public static ItemStack createFoodHead(String name, String base64, int hunger, float saturation) {
         ItemStack item = itemUtilities.createHeadBase64(base64);
         item = itemUtilities.storeDataInItem(item, PolarisPlugin.createNamespacedKey("foodhead_flag"), "1");
-        item = itemUtilities.storeDataInItem(item, PolarisPlugin.createNamespacedKey("foodhead_hunger"), hunger);
-        item = itemUtilities.storeDataInItem(item, PolarisPlugin.createNamespacedKey("foodhead_saturation"), saturation);
+        item = itemUtilities.storeDataInItem(item, PolarisPlugin.createNamespacedKey("foodhead_hunger"), Integer.toString(hunger));
+        item = itemUtilities.storeDataInItem(item, PolarisPlugin.createNamespacedKey("foodhead_saturation"), Float.toString(saturation));
         ItemMeta itemMeta = item.getItemMeta();
-        String[] lore = {ChatColor.GRAY + "(" + parseFloat(hunger)/2 + " hunger bars)"};
+        String[] lore = {ChatColor.GRAY + "(" + hunger/2 + " hunger bars)"};
         itemMeta.setLore(List.of(lore));
         item.setItemMeta(itemMeta);
         item = itemUtilities.renameItem(item, name);
