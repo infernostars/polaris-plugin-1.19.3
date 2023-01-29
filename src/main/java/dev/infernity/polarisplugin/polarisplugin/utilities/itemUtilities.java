@@ -36,10 +36,15 @@ public class itemUtilities {
     public static ItemStack createHeadBase64(String base64) {
         ItemStack skull = new ItemStack(Material.PLAYER_HEAD);
         /* so items can stack, we want to make same uuid each time */
-        UUID id = new UUID(
-                base64.substring(base64.length() - 20).hashCode(),
-                base64.substring(base64.length() - 10).hashCode()
-        );
+        UUID id = UUID.randomUUID();
+        try {
+            id = new UUID(
+                    base64.substring(base64.length() - 20).hashCode(),
+                    base64.substring(base64.length() - 10).hashCode()
+            );
+        } catch (Exception e) {
+            /* if we got an error earlier, just keep the random uuid */
+        }
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
         skullMeta.setPlayerProfile((PlayerProfile) Bukkit.createProfile(id, null));
         PlayerProfile playerProfile = skullMeta.getPlayerProfile();
