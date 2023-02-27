@@ -1,19 +1,15 @@
-package dev.infernity.polarisplugin.polarisplugin.commands;
+package dev.infernity.polarisplugin.polarisplugin.commands
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import org.bukkit.command.Command
+import org.bukkit.command.CommandExecutor
+import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 
-public class dieCommand implements CommandExecutor {
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
-
-            Player p = (Player) sender;
-
-            p.setHealth(0f);
-
+class dieCommand : CommandExecutor {
+    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
+        if (sender is Player) {
+            sender.health = 0.0
         }
-        return false;
+        return false
     }
 }
